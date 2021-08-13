@@ -4,8 +4,7 @@
  * User: daikai
  * Date: 2021/8/13
  */
-namespace  Amqp\Queue;
-require "vendor/autoload.php";
+namespace  ClearSwicth\Queue;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Wire\AMQPTable;

@@ -1,5 +1,5 @@
 {
-  "name": "amqp/queue",
+  "name": "clearswitch/queue",
   "description": "base rabbitmq queue",
   "keywords": [
     "rabbitmq",
@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "amqp\\queue\\": "src"
+      "ClearSwicth\\Queue\\": "src"
     }
   },
   "minimum-stability": "dev",
