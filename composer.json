@@ -8,14 +8,12 @@
   "require": {
     "php-amqplib/php-amqplib": "^3.0"
   },
-  "require-dev": {
-    "php-amqp": "*"
-  },
   "autoload": {
     "psr-4": {
       "ClearSwicth\\Queue\\": "src"
     }
   },
+  "minimum-stability": "dev",
   "prefer-stable": true
 
 }
