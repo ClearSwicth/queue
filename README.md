@@ -1,0 +1,2 @@
+# queue
+base rabbitmq queue
