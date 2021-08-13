@@ -9,7 +9,7 @@
     "php-amqplib/php-amqplib": "^3.0"
   },
   "require-dev": {
-    "ext-curl": "*"
+    "php-amqp": "*"
   },
   "autoload": {
     "psr-4": {
