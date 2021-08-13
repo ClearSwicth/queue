@@ -1,6 +1,7 @@
 #  Rabbitmq Queue
 #使用要求
-
+需要 php-amqp 的拓展
+需要rabbitmq 的rabbitmq_delayed_message_exchange 的插件
 
 生产者
 ## 创建生产者
