@@ -1,0 +1,19 @@
+{
+  "name": "amqp/queue",
+  "description": "base rabbitmq queue",
+  "keywords": [
+    "rabbitmq",
+    "delayed"
+  ],
+  "require": {
+    "php-amqplib/php-amqplib": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "amqp\\queue\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+
+}
