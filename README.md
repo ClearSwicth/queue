@@ -31,7 +31,7 @@ $channel=$Amqp->createChannel();
 //当然如果觉得上面的写法太繁琐也可以链式调用
 list($channel,$connection)=$Amqp->setDelayedTime($delayedTime)->setMessage($message)->setQueueName($queueName)->createChannel();
 ```
-##如果需要监听消息是否发送成功
+## 如果需要监听消息是否发送成功
 ```php
 $Amqp->setConfrim(true);//默认是的false 是不开启comfirm 机制的额
 //发送成功是监听这个方法，$msg 是返回的一些数据，参数是回调函数，在回调函数在是是你的业务逻辑
