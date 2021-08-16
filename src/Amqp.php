@@ -131,6 +131,7 @@ class Amqp
         $args = new AMQPTable(['x-dead-letter-exchange' => 'delayed']);
         $channel->queue_declare($this->queueName, false, true, false, false, false, $args);
         $channel->queue_bind($this->queueName, $this->queueName);
+        //$channel->queue_bind($this->queueName, $this->queueName,$this->queueName);//如果绑定了消费段也要绑定
         if ($this->confirm) {
             $channel->confirm_select();
         }
@@ -176,6 +177,7 @@ class Amqp
     {
         $connection = new AMQPStreamConnection($this->contentInfo['host'], $this->contentInfo['port'], $this->contentInfo['user'], $this->contentInfo['password'], $this->contentInfo['vhost']);
         $channel = $connection->channel();
+        //$channel->queue_bind($this->queueName, $this->queueName,$this->queueName);//如果绑定了消费段也要绑定
         $channel->basic_consume($queueName, '', false, false, false, false, $callback);
         while (count($channel->callbacks)) {
             $channel->wait();
