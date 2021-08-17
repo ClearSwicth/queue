@@ -72,6 +72,8 @@ $callback = function ($message,$channel) {
 $message->getBody();
 //消息处理完之后，告诉队列这个消息已经消费进行删除这一条消息
 $message->delivery_info['channel']->basic_ack($message->delivery_info['delivery_tag']);
+//当然当我们进行业务处理的时候，发现消息需要重回队列我们只需
+//$message->nack(true);//他对应的是ack()
 };
 //监听者
 $Amqp->receive('haha',$callback);
