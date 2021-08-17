@@ -62,11 +62,15 @@ $connection->close();
 ## 消费者
 ```php
 $Amqp=new Amqp($rabbitmqInfo);
-//这个是消费者的回调函数，就在这里面处理接受到的消息
-$callback = function ($message) {
+//开启消费端的限流 参数1:开启限流，参数2 每次消费的个数
+$Amqp->setQos(true,1);
+//这个是消费者的回调函数，就在这里面处理接受到的消息和队列返回的信息
+$callback = function ($message,$channel) {
+ //获得消息的长度
+ $channel->queue_declare($queueName, true);
  //获得生产者的生产的消息
 $message->getBody();
-//消息处理完之后，删除消息
+//消息处理完之后，告诉队列这个消息已经消费进行删除这一条消息
 $message->delivery_info['channel']->basic_ack($message->delivery_info['delivery_tag']);
 };
 //监听者
