@@ -47,6 +47,16 @@ class Amqp
     protected $confirm = false;
 
     /**
+     * 是否开启限流
+     * @var bool
+     */
+    protected $qos = false;
+
+    /**
+     * 限流的数量
+     */
+    protected $qosNumber;
+    /**
      * Amqp constructor.
      * @param array $content
      */
@@ -118,6 +128,12 @@ class Amqp
         return $this;
     }
 
+    public function setQos(bool $qos, int $number)
+    {
+        $this->qos = $qos;
+        $this->qosNumber = $number;
+    }
+
     /**
      * 连接amqp
      * @author clearSwitch
@@ -178,7 +194,15 @@ class Amqp
         $connection = new AMQPStreamConnection($this->contentInfo['host'], $this->contentInfo['port'], $this->contentInfo['user'], $this->contentInfo['password'], $this->contentInfo['vhost']);
         $channel = $connection->channel();
         //$channel->queue_bind($this->queueName, $this->queueName,$this->queueName);//如果绑定了消费段也要绑定
-        $channel->basic_consume($queueName, '', false, false, false, false, $callback);
+        //开启了限流的功能
+        if ($this->qos) {
+            $channel->basic_qos(null, $this->qosNumber, null);
+        }
+        $channel->basic_consume($queueName, '', false, false, false, false, function (AMQPMessage $msg) use ($channel, $callback) {
+            $callback($msg, $channel);
+        });
+        //$channel->basic_consume($queueName, '', false, false, false, false,$callback);
+
         while (count($channel->callbacks)) {
             $channel->wait();
         }
