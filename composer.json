@@ -1,6 +1,8 @@
 {
   "name": "clearswitch/queue",
   "description": "base rabbitmq queue",
+  "type": "library",
+  "license": "MIT",
   "keywords": [
     "rabbitmq",
     "delayed"
