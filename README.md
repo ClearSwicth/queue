@@ -24,6 +24,8 @@ $Amqp=new Amqp($rabbitmqInfo);
 $Amqp->setDelayedTime(1000);
 //设置发送消息体  string
 $Amqp->setMessage($body);
+//是否开启开启了限流的功能 参数一表示开启，参数2表示的限流的个数，默认是不开启的
+$Amqp->setQos(true, 1);
 //设置队列的名字
 $Amqp->setQueueName($queueName);
 //最后创建队列
